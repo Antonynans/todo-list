@@ -30,10 +30,13 @@ export default function TasksContainer({ socket }) {
             destination,
         });
     };
+
+    useEffect(() => {
+        socket.on('tasks', (data) => setTasks(data));
+    }, [socket]);
     
     return (
         <div className='container'>
-        {/** --- 👇🏻 DragDropContext  ---- */}
         <DragDropContext onDragEnd={handleDragEnd}>
             {Object.entries(tasks).map((task) => (
                 <div

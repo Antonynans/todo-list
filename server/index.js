@@ -62,21 +62,7 @@ let tasks = {
   },
 };
 
-// const sendNotification = async (user) => {
-// try {
-// const result = await novu.trigger("<TEMPLATE_ID>", {
-// to: {
-// subscriberId: "<SUBSCRIBER_ID>",
-// },
-// payload: {
-// userId: user,
-// },
-// });
-// console.log(result);
-// } catch (err) {
-// console.error("Error >>>>", { err });
-// }
-// };
+
 socketIO.on("connection", (socket) => {
   console.log(`⚡: ${socket.id} user just connected!`);
 
@@ -85,8 +71,7 @@ socketIO.on("connection", (socket) => {
     tasks["pending"].items.push(newTask);
     socket.emit("tasks", tasks);
 
-    // 👇🏻 sends notification via Novu
-    // sendNotification(data.userId);
+   
   });
 
   socket.on("taskDragged", (data) => {
